@@ -37,19 +37,26 @@ class _LoginViewState extends State<LoginView> {
       ),
       body: Column(
         children: [
-          TextField(
-            controller: _email,
-            enableSuggestions: false,
-            autocorrect: false,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(hintText: "Enter your email"),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: TextField(
+              controller: _email,
+              enableSuggestions: false,
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
+              decoration: const InputDecoration(hintText: "Enter your email"),
+            ),
           ),
-          TextField(
-            controller: _password,
-            enableSuggestions: false,
-            autocorrect: false,
-            obscureText: true,
-            decoration: const InputDecoration(hintText: "Enter your password"),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: TextField(
+              controller: _password,
+              enableSuggestions: false,
+              autocorrect: false,
+              obscureText: true,
+              decoration:
+                  const InputDecoration(hintText: "Enter your password"),
+            ),
           ),
           TextButton(
             onPressed: () async {
@@ -60,6 +67,14 @@ class _LoginViewState extends State<LoginView> {
                   email: email,
                   password: password,
                 );
+                final user = AuthService.firebase().currentUser;
+                if (user != null) {
+                  // ignore: use_build_context_synchronously
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    mainmenuRoute,
+                    (route) => false,
+                  );
+                }
               } on UserNotFoundAuthException {
                 await showErrorDialog(context, "User Not Found");
               } on WrongPasswordAuthException {

@@ -37,19 +37,26 @@ class _RegisterViewState extends State<RegisterView> {
       ),
       body: Column(
         children: [
-          TextField(
-            controller: _email,
-            enableSuggestions: false,
-            autocorrect: false,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(hintText: "Enter your email"),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: TextField(
+              controller: _email,
+              enableSuggestions: false,
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
+              decoration: const InputDecoration(hintText: "Enter your email"),
+            ),
           ),
-          TextField(
-            controller: _password,
-            enableSuggestions: false,
-            autocorrect: false,
-            obscureText: true,
-            decoration: const InputDecoration(hintText: "Enter your password"),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: TextField(
+              controller: _password,
+              enableSuggestions: false,
+              autocorrect: false,
+              obscureText: true,
+              decoration:
+                  const InputDecoration(hintText: "Enter your password"),
+            ),
           ),
           TextButton(
             onPressed: () async {
